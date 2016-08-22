@@ -1,0 +1,11 @@
+package: github.com/mixmastermike/aleatory
+import:
+- package: github.com/stretchr/testify
+  version: d77da356e5
+- package: github.com/dghubble/sessions
+- package: github.com/dghubble/ctxh
+- package: github.com/dghubble/gologin
+- package: github.com/dghubble/oauth1
+- package: golang.org/x/net/context
+- package: github.com/gorilla/securecookie
+- package: github.com/gorilla/websocket

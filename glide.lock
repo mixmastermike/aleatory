@@ -1,0 +1,44 @@
+hash: 0c9d42cda7f298d3b58154da74754489048a2d7413b749d204bd5d03ed021792
+updated: 2016-08-17T12:10:54.561502631-07:00
+imports:
+- name: github.com/cenkalti/backoff
+  version: cdf48bbc1eb78d1349cbda326a4a037f7ba565c6
+- name: github.com/dghubble/ctxh
+  version: deb2d9fb8ee9786f7c7c88b76e7a83238e9a51ff
+- name: github.com/dghubble/go-twitter
+  version: 3cfcd4463840e215f071d9b261e96ceeff567d95
+  subpackages:
+  - twitter
+- name: github.com/dghubble/gologin
+  version: ee7eec93ec7939c7b1ba89170ddc1d697b6adf42
+- name: github.com/dghubble/oauth1
+  version: b61f9f49ca0b822c9c681186ce83bed924c98e56
+- name: github.com/dghubble/sessions
+  version: 4f3e939c9cae9394159f58ce5f473951c689e488
+- name: github.com/dghubble/sling
+  version: 9da07f0db0226d82803fc7374dba08506d29da00
+- name: github.com/google/go-querystring
+  version: 9235644dd9e52eeae6fa48efd539fdc351a0af53
+  subpackages:
+  - query
+- name: github.com/gorilla/securecookie
+  version: c13558c2b1c44da35e0eb043053609a5ba3a1f19
+- name: github.com/gorilla/websocket
+  version: a69d25be2fe2923a97c2af6849b2f52426f68fc0
+- name: github.com/stretchr/testify
+  version: d77da356e56a7428ad25149ca77381849a6a5232
+  subpackages:
+  - assert
+- name: golang.org/x/net
+  version: 07b51741c1d6423d4a6abab1c49940ec09cb1aaf
+  subpackages:
+  - context
+testImports:
+- name: github.com/davecgh/go-spew
+  version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
+  subpackages:
+  - spew
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+  subpackages:
+  - difflib
