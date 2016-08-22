@@ -1,0 +1,113 @@
+{{define "index"}}
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/aleatory.css">
+    </head>
+    <body>
+        <header>
+          <div id="search_bar">
+            <span class="blue fancy">Aleatory</span>
+              - <span id="music_verb">make</span> music with
+              <form id="search_form">
+                <img src="/img/twitter-128.png" />
+                <input id="search_field" type="text" class="blue" onsubmit="javascript: void(0);"/>
+              </form>
+          </div>
+        </header>
+        <div id="container"></div>
+        <div id="detail">
+          <p>[a·le·a·to·ry] is a musical description, referring music composed with elements of random choice.</p>
+
+          <p>This project attempts to create music from events streaming in Twitter, given a search term.<br />
+          Both the sound pitches and visual particle's size are effected by the length of the tweets.</p>
+
+          <p>Inspiration for the project comes from work done at <a href="http://www.bitlisten.com/" target="_blank">http://www.bitlisten.com/</a> and <a href="https://github.com/soulwire/sketch.js" target="_blank">https://github.com/soulwire/sketch.js</a><br />
+          Musical sounds created using <a href="http://www.audacityteam.org/" target="_blank">http://www.audacityteam.org/</a><br />
+          Bird sounds from <a href="http://www.orangefreesounds.com/free-birds-chirping-sound-effect/" target="_blank">http://www.orangefreesounds.com/free-birds-chirping-sound-effect/</a><br />
+          Ambient pad from <a href="http://www.dl-sounds.com/royalty-free/summer-ambient/" target="_blank">http://www.dl-sounds.com/royalty-free/summer-ambient/</a></p>
+          <p>Github <a href="https://github.com/mixmastermike/aleatory" target="_blank">https://github.com/mixmastermike/aleatory</a></p>
+        </div>
+        <div id="log"></div>
+    </body>
+    <footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script type="text/javascript" src="/js/sketch.min.js"></script>
+      <script type="text/javascript" src="/js/howler.min.js"></script>
+      <script type="text/javascript" src="/js/aleatory.js"></script>
+      <script type="text/javascript">
+          // A placeholder for the WebSocket connection object
+          var conn = {};
+
+          $(function() {
+            // Handle the search bar
+            $('#search_form').on('submit', function(e) {
+              e.preventDefault();
+              var searchField = $('#search_field');
+              // Remove any unsavory charactors
+              searchField.val( searchField.val().replace(/[^a-zA-Z0-9]/g, '') );
+              // (re)init the WebSocket connection
+              if( conn.readyState !== undefined ) {
+                conn.close();
+              }
+              if( searchField.val().length > 0 ) {
+                initConnection(searchField.val());
+              }
+              updateUI(searchField.val());
+              return false;
+            });
+          });
+
+    			function updateUI(searchTerm) {
+            if( searchTerm.length > 0 ) {
+              $('#music_verb').text('making');
+              $('#search_tip').hide();
+              $('#search_field').val(searchTerm);
+            } else {
+              $('#music_verb').text('make');
+              $('#search_tip').show();
+              $('#search_field').val('');
+            }
+          }
+
+          function initConnection(searchTerm) {
+            // Init the connection
+            conn = new WebSocket("ws://{{.Host}}/ws");
+
+            // Send the search parameters
+            var retry = 3;
+            var retryWait = 150;
+            setTimeout(function connect() {
+              if( conn.readyState !== undefined
+                  && conn.readyState === 1 ) {
+                  // Send the search
+                  conn.send(JSON.stringify({
+                    'cmd': 'search',
+                    'val': searchTerm
+                  }));
+              } else {
+                if( --retry > 0 ) {
+                  setTimeout(connect(), retryWait);
+                }
+              }
+            }, retryWait); // give it a tick to finish setup before sending
+
+            // conn.onclose = function(evt) {
+            //     $("<div><b>closed</b></div>").appendTo($("#log"));
+            // }
+
+            // Process a message
+            conn.onmessage = function(m) {
+              var msg = JSON.parse(m.data);
+              // Create a particle based on the message detail
+              play(msg.type, msg.weight);
+            }
+          }
+        </script>
+    </footer>
+    <div id="search_tip">
+      Type a search word and press return
+    </div>
+</html>
+{{end}}

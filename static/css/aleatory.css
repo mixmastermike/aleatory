@@ -1,0 +1,74 @@
+@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two);
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+html, body {
+	font-family: 'Lato', sans-serif;
+	color: #555;
+	background: #f2f2f2;
+	margin: 0;
+}
+
+.blue {
+	color: #3499FF;
+}
+
+.fancy {
+	font-family: 'Shadows Into Light Two', sans-serif;
+}
+
+a, a:visited {
+	color: #3499FF;
+}
+
+header {
+	position: absolute;
+	width: 100%;
+	padding: 50px 50px;
+	background-color: rgba(200, 200, 200, 0.65);
+}
+
+header #search_bar {
+	font-size: 40px;
+	margin-right: 10px;
+	line-height: 40px;
+}
+
+header #search_bar img {
+	height: 30px;
+	margin-left: 10px;
+}
+
+header #search_bar form {
+	padding: 0px;
+	margin: 0px;
+}
+
+header #search_bar form,
+header #search_bar input {
+	padding: 0px;
+	height: 40px;
+	line-height: 40px;
+	display: inline;
+	width: 300px;
+	font-family: 'Shadows Into Light Two', sans-serif;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+#detail {
+	position: absolute;
+	top: 200px;
+	width: 100%;
+	padding: 30px 30px;
+	background-color: rgba(230, 230, 230, 0.65);
+}
+
+#search_tip {
+	font-size: 12px;
+	color: #666;
+	font-style: italic;
+	position: fixed;
+	z-index: 99;
+	top: 102px;
+	left: 552px;
+}
