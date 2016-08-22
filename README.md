@@ -28,4 +28,5 @@ go test $(go list ./... | grep -v '/vendor/')
 # to run
 go build -o aleatory github.com/mixmastermike/aleatory/app
 ./aleatory -consumer-key={aa} -consumer-secret={bb} -access-token={cc} - access-secret={dd}
+# open http://localhost:8080 in your favorite browser
 ```
