@@ -58,5 +58,6 @@ func (c *Connection) Receive(fnc func([]byte)) {
 
 // Close will close the connection
 func (c *Connection) Close() error {
+	close(c.send)
 	return c.ws.Close()
 }
