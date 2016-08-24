@@ -3,6 +3,8 @@ _[a·le·a·to·ry] is a musical description, referring music composed with elem
 
 This project attempts to create music from events streaming in Twitter.  Inspiration for the project comes from work done at http://www.bitlisten.com/ and https://github.com/soulwire/sketch.js
 
+![](screencap.gif)
+
 ## Getting Started
 This project requires Go v1.6+
 
